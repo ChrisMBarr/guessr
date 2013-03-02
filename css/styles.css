@@ -1,0 +1,80 @@
+/*_________________________________ Globals */
+html,body{
+	font-family:arial,sans-serif;
+	background:#111;
+	color:#FFF;
+	height:100%;
+	margin:0;
+	padding:0;
+}
+body{
+	font-size:0.9em;
+	overflow-y:scroll;
+}
+h1, h2, h3, h4, h5{margin:0.2em;}
+p{padding:0 0 .1em 0; margin:0.5em;}
+ul, ul li{list-style:none; padding:0; margin:0;}
+label{display:block;}
+.hidden{display:none;}
+.clear{clear:both; float:none !important;}
+.button, .button:hover{text-decoration:none; position:relative; cursor:pointer; padding:0.1em  0.1em  0.1em  0em;}
+.ui-icon{float:left; margin-top:1px;}
+.dialog{width:400px;}
+.content{padding:0.5em;}
+
+/*_________________________________ Main Stuff */
+#container{
+	width:760px;
+	margin:0 auto;
+	min-height:100%;
+	position: relative;
+}
+#title{font-size:1.8em; text-align:center; margin-bottom:1em;}
+#intro{
+	width:400px;
+	position:absolute;
+	left:50%;
+	margin-left:-200px;
+}
+#main{padding-bottom:55px;}
+#foot{
+	font-size:0.7em;
+	width:600px;
+	position:absolute;
+	bottom:0;
+	left:50%;
+	margin:-40px 0 0 -300px;
+}
+#info{float:left;}
+#switcher{float:right; margin-right: 1em;}
+#startFirstGame{margin:0 auto; display:block;}
+
+/*_________________________________ Game Visuals */
+#gameOptions{float:left; width:auto;}
+#photos{
+	width:375px;
+	height:300px;
+	border:1px solid #DDD;
+	overflow:hidden;
+	background:url(img/loader.gif) center center no-repeat;
+	margin:1em 0 0 0;
+}
+#photos img{display:block; border:none; float:left;}
+
+/*_________________________________ Game Controls */
+#guess{
+	float:left;
+	margin-left:10px;
+	width:325px;
+}
+#guesses{
+	border:1px solid #DDD;
+	padding:0.2em;
+}
+#guesses li{
+	float:left;
+	margin-right:20px;
+	color:#A0A0A0;
+}
+#timerPos{float:right; font-size:1.5em; margin-top:0.1em;}
+#timerPos .ui-icon{margin-top:0.3em;}
