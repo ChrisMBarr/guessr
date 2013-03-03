@@ -56,7 +56,7 @@ label{display:block;}
 	height:300px;
 	border:1px solid #DDD;
 	overflow:hidden;
-	background:url(img/loader.gif) center center no-repeat;
+	background:url(../img/loader.gif) center center no-repeat;
 	margin:1em 0 0 0;
 }
 #photos img{display:block; border:none; float:left;}
@@ -67,14 +67,28 @@ label{display:block;}
 	margin-left:10px;
 	width:325px;
 }
-#guesses{
-	border:1px solid #DDD;
-	padding:0.2em;
-}
+
 #guesses li{
-	float:left;
-	margin-right:20px;
-	color:#A0A0A0;
+	margin-right: 10px;
+	color: #A0A0A0;
+	background: #EEE;
+	padding: 3px 5px;
+	display: inline-block;
+	border-radius: 5px;
+	border: 1px solid #A0A0A0;
 }
+
+#hint{
+	margin: 20px 0;
+	line-height: 25px;
+}
+
+#hintText strong{
+	background: #A7E2A7;
+	padding: 1px 3px;
+	border-radius: 5px;
+	white-space: nowrap;
+}
+
 #timerPos{float:right; font-size:1.5em; margin-top:0.1em;}
 #timerPos .ui-icon{margin-top:0.3em;}

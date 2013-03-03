@@ -23,7 +23,9 @@ var $Game = function($){
 		setup.dialogs();
 
 		//initial page load animation
-		$("#intro").show("drop",settings.dropAnimationOpts);
+		$("#intro").show("drop",settings.dropAnimationOpts, function(){
+			$("#startFirstGame").focus();
+		});
 	});
 
 	var setup={
@@ -95,11 +97,10 @@ var $Game = function($){
 
 			$("#hint").hide();
 			$("#guesses, #photos,#preloadPhotos").empty();
-			$("<li class='clear'></li>").appendTo("#guesses");
 			$("#gameStuff").slideUp(settings.animationSpeed,settings.easing);
 			numGuesses=0;
 			$(".numOfGuesses").text(numGuesses);
-			$("#guess #tag").val("").focus();
+			$("#tag").val("").focus();
 
 			currentTag = utilities.getTag();
 			//get JSON data from Flickr
@@ -116,8 +117,8 @@ var $Game = function($){
 				}else{
 					//Wrong!
 					if(numGuesses==1) $("#gameStuff").slideDown(settings.animationSpeed,settings.easing);
-					$("#guess #tag").effect("highlight",{"color":"#F00F00"},settings.animationSpeed).val("").focus();
-					$("#guesses .clear").before("<li>"+guessedTag+"</li>")
+					$("#tag").effect("highlight",{"color":"#F00F00"},settings.animationSpeed).val("").focus();
+					$("#guesses").append("<li>"+guessedTag+"</li>")
 					$("#guesses :nth-child("+numGuesses+")").hide().show(settings.animationSpeed,settings.easing);
 				}
 			}
@@ -133,10 +134,25 @@ var $Game = function($){
 
 			return false;
 		},
-		displayHint:function(){
-			var hintText = "The word is <strong>" + currentTag.categoryName + "</strong> and it has <strong>"+ currentTag.word.length + "</strong> letters."
+		displayHint:function(hintLevel){
+			var hintText = "";
+			
+			if(hintLevel >= 1){
+				hintText += "The word is <strong>" + currentTag.categoryName + "</strong>";
+			}
+
+			if(hintLevel >= 2){
+				hintText += ", it has <strong>"+ currentTag.word.length + " letters</strong>";
+			}
+
+			if(hintLevel >= 3){
+				hintText += ", and it begins with <strong>the letter "+ currentTag.word.substr(0,1).toUpperCase() + "</strong>";
+			}
+
+			hintText += ".";
+
 			$("#hintText").html(hintText);
-			$("#hint").show();
+			$("#hint").show().effect("highlight");
 		}
 	};
 
@@ -205,10 +221,16 @@ var $Game = function($){
 				return actions.loseGame();
 			}else{
 
-				if(timer.currentTime === Math.round(settings.gameDuration/2)){
-					actions.displayHint();
+				//Display different hints at different times
+				if(timer.currentTime === Math.round(settings.gameDuration * 0.75)){
+					actions.displayHint(1);
+				}else if(timer.currentTime === Math.round(settings.gameDuration * 0.5)){
+					actions.displayHint(2);
+				}else if(timer.currentTime === Math.round(settings.gameDuration * 0.25)){
+					actions.displayHint(3);
 				}
 
+				//Time almost out, turn the clock red!
 				if(timer.currentTime === 10){
 					$("#timer").animate({color:"#FF0000"},settings.animationSpeed);
 				}
