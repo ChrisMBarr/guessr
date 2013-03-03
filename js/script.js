@@ -96,11 +96,11 @@ var $Game = function($){
 			timer.stop();
 
 			$("#hint").hide();
-			$("#guesses, #photos,#preloadPhotos").empty();
+			$("#guesses, #photos, #preloadPhotos, #hintText").empty();
 			$("#gameStuff").slideUp(settings.animationSpeed,settings.easing);
 			numGuesses=0;
 			$(".numOfGuesses").text(numGuesses);
-			$("#tag").val("").focus();
+			$("#tag").val("");
 
 			currentTag = utilities.getTag();
 			//get JSON data from Flickr
