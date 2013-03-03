@@ -106,8 +106,8 @@ var $Game = function($){
 			utilities.getImages(currentTag.word);
 		},
 		guess:function(){
-			guessedTag=$("#guess #tag").val();
-			if($.trim(guessedTag) != ""){
+			guessedTag = $.trim($("#guess #tag").val().toLowerCase());
+			if(guessedTag != ""){
 				numGuesses++;
 				$(".numOfGuesses").text(numGuesses);
 				if(guessedTag==currentTag.word){
@@ -149,7 +149,7 @@ var $Game = function($){
 
 			return{
 				categoryName: category.categoryName,
-				word: utilities.getRandomFromArray(category.wordList)
+				word: utilities.getRandomFromArray(category.wordList).toLowerCase()
 			}
 		},
 		getImages:function(tag){
