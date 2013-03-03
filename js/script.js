@@ -190,7 +190,10 @@ var $Game = function($){
 								'zoomSpeedIn':settings.animationSpeed,
 								'zoomSpeedOut':settings.animationSpeed,
 								'overlayShow': false,
-								'hideOnContentClick':true
+								'hideOnContentClick':true,
+								afterClose:function(){
+									$("#tag").focus();
+								}
 							});
 							loadedImgs++;
 							if(loadedImgs == settings.imagesToDisplay){
@@ -211,6 +214,7 @@ var $Game = function($){
 		interval: null,
 		currentTime:0,
 		start:function(){
+			$("#tag").prop("disabled",false).focus();
 			timer.currentTime = settings.gameDuration + 1;
 			timer.tick();
 		},
@@ -241,6 +245,7 @@ var $Game = function($){
 			clearTimeout(timer.timeout);
 			timer.update(0);
 			$("#timer").removeAttr("style");
+			$("#tag").prop("disabled",true);
 		},
 		update:function(time){
 			var displayTime=time;
